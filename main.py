@@ -75,6 +75,9 @@ def check_valid_number(field, max_num):
     return num
 
 
+print("¡Este bot rellenara su asistencia de forma automática!")
+print("¡¿Están listos chicos?!\n")
+
 if ".env" not in os.listdir(os.getcwd()):
     print(
         """No hay un archivo .env con tus credenciales.

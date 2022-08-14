@@ -34,13 +34,13 @@ env\Scripts\activate
 source env/bin/activate
 ```
 
-**Instalar dependencias**
+### Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**Ejecutar**
+### Ejecutar
 
 
 ```bash

@@ -2,3 +2,4 @@ pyinstaller.exe --onefile main.py
 cp dist/main.exe mark_attendance.exe
 mkdir mark_attendance
 cp dist/main.exe mark_attendance/mark_attendance.exe
+zip -r mark_attendance.zip mark_attendance

@@ -5,10 +5,11 @@ from dotenv import load_dotenv
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from typing_extensions import Literal
 
 
 class FormBot(Chrome):
-    def __init__(self, FORM_URL):
+    def __init__(self, FORM_URL: str) -> None:
         chrome_options = Options()
         chrome_options.add_argument("log-level=3")
 
@@ -20,49 +21,45 @@ class FormBot(Chrome):
 
         self.get(FORM_URL)
 
-    def fill_email(self, email):
-        email_input = self.find_element(
+    def fill_email(self, email: str) -> None:
+        self.find_element(
             By.XPATH,
             '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div[1]/div/div[1]/input',
-        )
-        email_input.send_keys(email)
+        ).send_keys(email)
 
-    def fill_week(self, week):
-        n = (week - 1) * 3 + 9
-        self.find_element(By.XPATH, f'//*[@id="i{n}"]/div[3]/div').click()
+    def fill_week(self, week: int) -> None:
+        num = (week - 1) * 3 + 9
+        self.find_element(By.XPATH, f'//*[@id="i{num}"]/div[3]/div').click()
 
-    def fill_name(self, full_name):
-        name_input = self.find_element(
+    def fill_name(self, full_name: str) -> None:
+        self.find_element(
             By.XPATH,
             '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input',
-        )
-        name_input.send_keys(full_name)
+        ).send_keys(full_name)
 
-    def fill_rut(self, rut):
-        rut_input = self.find_element(
+    def fill_rut(self, rut: str) -> None:
+        self.find_element(
             By.XPATH,
             '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input',
-        )
-        rut_input.send_keys(rut)
+        ).send_keys(rut)
 
-    def fill_nrc(self, nrc):
-        nrc_input = self.find_element(
+    def fill_nrc(self, nrc: str) -> None:
+        self.find_element(
             By.XPATH,
             '//*[@id="mG61Hd"]/div[2]/div/div[2]/div[5]/div/div/div[2]/div/div[1]/div/div[1]/input',
-        )
-        nrc_input.send_keys(nrc)
+        ).send_keys(nrc)
 
-    def fill_day(self, day):
-        n = (day - 1) * 3 + 73
-        self.find_element(By.XPATH, f'//*[@id="i{n}"]/div[3]/div').click()
+    def fill_day(self, day: int) -> None:
+        num = (day - 1) * 3 + 73
+        self.find_element(By.XPATH, f'//*[@id="i{num}"]/div[3]/div').click()
 
-    def submit(self):
+    def submit(self) -> None:
         self.find_element(
             By.XPATH, '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div/span'
         ).click()
 
 
-def check_valid_number(field, max_num):
+def check_valid_number(field: Literal["semana", "día"], max_num: int) -> None:
     num = 0
     while num not in range(1, max_num + 1):
         try:

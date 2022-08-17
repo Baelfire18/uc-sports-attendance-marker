@@ -1,3 +1,4 @@
 selenium===4.4.0
 python-dotenv===0.20.0
 pip===22.2.2
+typing_extensions===4.3.0

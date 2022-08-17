@@ -2,12 +2,12 @@ import os
 import platform
 import time
 from dotenv import load_dotenv
-from selenium import webdriver
+from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 
-class FormBot(webdriver.Chrome):
+class FormBot(Chrome):
     def __init__(self, FORM_URL):
         chrome_options = Options()
         chrome_options.add_argument("log-level=3")
@@ -127,7 +127,7 @@ try:
     bot.fill_rut(RUT)
     bot.fill_nrc(NRC)
     bot.fill_day(DAY)
-    # bot.submit()
+    bot.submit()
     print("Asitencia marcada con éxito!")
 
 except Exception as e:
